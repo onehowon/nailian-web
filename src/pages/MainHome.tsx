@@ -100,7 +100,7 @@ function Banner() {
         ref={ref}
         onScroll={e => {
           const el = e.currentTarget;
-          setIdx(Math.round(el.scrollLeft / (331 + 8)));
+          setIdx(Math.round(el.scrollLeft / (el.clientWidth + 8)));
         }}
       >
         {banners.length === 0 && <div className="banner-item banner-skeleton" />}

@@ -53,6 +53,10 @@ body,
   height: 100%;
   margin: 0;
 }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
   font-family: var(--font);
   font-weight: 500;
@@ -92,7 +96,10 @@ img {
 }
 .notice {
   flex: none;
-  padding: 10px 16px 9px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 10px max(16px, env(safe-area-inset-right)) 9px max(16px, env(safe-area-inset-left));
   background: var(--gray850);
   color: var(--white);
   font-size: 12px;
@@ -122,6 +129,37 @@ img {
 }
 .notice-links > span {
   color: #8a8a8a;
+}
+/* 휴대폰 폭: 안내 띠 글자를 줄이고 링크 4개를 2열 × 2줄로 */
+@media (max-width: 639.98px) {
+  .notice {
+    font-size: 11.5px;
+    line-height: 1.45;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .notice-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3px 10px;
+    margin-top: 5px;
+  }
+  .notice-links > span {
+    display: none;
+  }
+  .notice-links a {
+    min-width: 0;
+  }
+}
+@media (max-width: 359.98px) {
+  .notice {
+    font-size: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .notice-links {
+    gap: 3px 6px;
+  }
 }
 .stage {
   flex: 1;
@@ -432,7 +470,6 @@ img {
 .banner {
   width: 331px;
   max-width: calc(100% - 32px);
-  height: 158px;
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -445,7 +482,7 @@ img {
 .banner-item {
   flex: none;
   width: 100%;
-  height: 158px;
+  aspect-ratio: 331 / 158;
   scroll-snap-align: start;
   border-radius: 4px;
   overflow: hidden;
