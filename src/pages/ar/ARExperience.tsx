@@ -3,12 +3,13 @@ import Icon from '../../shared/ui/Icon';
 import { TabBarHeader } from '../../shared/ui/TabBar';
 import { EmptyView, Spinner } from '../../shared/ui/misc';
 import { useInfinite } from '../../shared/lib/useQuery';
-import { goBack } from '../../shared/lib/router';
+import { goBack, navigate } from '../../shared/lib/router';
 import { toast } from '../../shared/lib/toast';
 import { createUserNailSet, fetchNailSetDetail, fetchNails } from '../../shared/api/endpoints';
 import { APIError, type FingerType, type NailTipItem, type SelectedNailSet } from '../../shared/api/types';
 import NailOverlay from './NailOverlay';
 import FilterModal, { type FilterValues } from './FilterModal';
+import { saveTryOnSet } from './tryon/selection';
 
 // 원본 NailSelection 의 FINGER_MAP: 버튼은 소지 → 엄지 순서
 const FINGER_MAP: { index: number; type: FingerType }[] = [
@@ -115,9 +116,10 @@ export default function ARExperience({ presetId }: { presetId?: number }) {
       toast.showToast('모든 손가락에 네일팁을 선택해주세요', { position: 'bottom' });
       return;
     }
-    // 원본은 여기서 실시간 카메라 AR(ARCameraPage)로 넘어간다. 웹 체험판은 손 이미지 확대 보기로 대신한다.
-    setLightbox(true);
-    toast.showToast('실시간 카메라 AR은 iOS 앱에서만 제공돼요', { position: 'bottom' });
+    // 원본은 여기서 실시간 카메라 AR(ARCameraPage)로 넘어간다. 웹 체험판은 MediaPipe 손 인식으로 다시 만든
+    // '내 손에 올려보기' 화면(사진·실시간 카메라·샘플 손)으로 넘어간다.
+    saveTryOnSet(nailSet);
+    navigate('/ar/try');
   };
 
   return (

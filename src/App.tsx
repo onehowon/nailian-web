@@ -5,9 +5,11 @@ import NailSetFeed from './pages/NailSetFeed';
 import NailSetDetail from './pages/NailSetDetail';
 import ARExperience from './pages/ar/ARExperience';
 import Bookmark from './pages/Bookmark';
+import ARTryOn from './pages/ar/tryon/ARTryOn';
 
 const APP_STORE = 'https://apps.apple.com/kr/app/nailian/id6744244726';
-const REPO = 'https://github.com/Snail-official/Nailian-FE';
+const REPO_FE = 'https://github.com/Snail-official/Nailian-FE';
+const REPO_BE = 'https://github.com/Snail-official/Nailian-BE';
 
 function Screen() {
   const { pathname, params } = useRoute();
@@ -24,6 +26,7 @@ function Screen() {
       />
     );
   }
+  if (seg[0] === 'ar' && seg[1] === 'try') return <ARTryOn />;
   if (seg[0] === 'ar') {
     const set = Number(params.get('set'));
     return <ARExperience key={`ar-${set || ''}`} presetId={set || undefined} />;
@@ -38,8 +41,8 @@ export default function App() {
       <header className="notice" role="note">
         <p className="notice-text">
           Nailian 웹 체험판 — 2025년 출시한 iOS 앱의 시안 탐색·선택·미리 보기 흐름을 재현했습니다.
-          현재 운영 서버가 종료돼 가상 API와 샘플 데이터로 동작합니다. 실시간 카메라 AR과 로그인은
-          제공하지 않습니다.
+          현재 운영 서버가 종료돼 가상 API와 샘플 데이터로 동작합니다. AR은 웹용으로 다시 구현했습니다(손
+          인식 MediaPipe, 원본 iOS 앱은 손톱 검출·분할 모델 사용). 로그인은 제공하지 않습니다.
         </p>
         <nav className="notice-links" aria-label="관련 링크">
           <a href="./" aria-current="page">
@@ -50,7 +53,11 @@ export default function App() {
             출시 앱 <span>(출시 이력)</span>
           </a>
           <span aria-hidden="true">·</span>
-          <a href={REPO} target="_blank" rel="noopener noreferrer">
+          <a href={REPO_BE} target="_blank" rel="noopener noreferrer">
+            원본 BE 코드 <span>(본인 담당)</span>
+          </a>
+          <span aria-hidden="true">·</span>
+          <a href={REPO_FE} target="_blank" rel="noopener noreferrer">
             원본 FE 코드 <span>(구현 근거)</span>
           </a>
         </nav>
