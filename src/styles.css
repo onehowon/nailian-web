@@ -111,6 +111,12 @@ img {
   color: #e9e9e9;
   word-break: keep-all;
 }
+.notice-credit {
+  margin-top: 3px;
+  font-weight: 600;
+  color: #cfcfcf;
+  word-break: keep-all;
+}
 .notice-links {
   margin-top: 4px;
   display: flex;
@@ -130,7 +136,7 @@ img {
 .notice-links > span {
   color: #8a8a8a;
 }
-/* 휴대폰 폭: 안내 띠 글자를 줄이고 링크 4개를 2열 × 2줄로 */
+/* 휴대폰 폭: 안내 띠 글자를 줄이고 링크는 구분점 없이 줄바꿈 */
 @media (max-width: 639.98px) {
   .notice {
     font-size: 11.5px;
@@ -139,9 +145,7 @@ img {
     padding-bottom: 8px;
   }
   .notice-links {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3px 10px;
+    gap: 3px 12px;
     margin-top: 5px;
   }
   .notice-links > span {

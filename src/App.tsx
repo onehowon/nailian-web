@@ -44,17 +44,18 @@ export default function App() {
           현재 운영 서버가 종료돼 가상 API와 샘플 데이터로 동작합니다. AR은 웹용으로 다시 구현했습니다(손
           인식 MediaPipe, 원본 iOS 앱은 손톱 검출·분할 모델 사용). 로그인은 제공하지 않습니다.
         </p>
+        <p className="notice-credit">원본 앱: 7인 팀 · 웹 체험판: 성원호 재구현(Claude Code)</p>
         <nav className="notice-links" aria-label="관련 링크">
           <a href="./" aria-current="page">
             웹 체험판 <span>(현재 페이지)</span>
           </a>
           <span aria-hidden="true">·</span>
           <a href={APP_STORE} target="_blank" rel="noopener noreferrer">
-            출시 앱 <span>(출시 이력)</span>
+            출시 앱 <span>(설치 가능 · 서버 종료로 현재 동작 안 함)</span>
           </a>
           <span aria-hidden="true">·</span>
           <a href={REPO_BE} target="_blank" rel="noopener noreferrer">
-            원본 BE 코드 <span>(본인 담당)</span>
+            원본 BE 코드 <span>(백엔드 개발 참여)</span>
           </a>
           <span aria-hidden="true">·</span>
           <a href={REPO_FE} target="_blank" rel="noopener noreferrer">

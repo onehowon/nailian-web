@@ -3,12 +3,12 @@
 > Nailian 웹 체험판 — 2025년 출시한 iOS 앱의 시안 탐색·선택·미리 보기 흐름을 재현했습니다. 현재 운영 서버가 종료돼 가상 API와 샘플 데이터로 동작합니다. AR은 웹용으로 다시 구현했습니다(손 인식 MediaPipe, 원본 iOS 앱은 손톱 검출·분할 모델 사용). 로그인은 제공하지 않습니다.
 
 - 웹 체험판 (현재 페이지): https://onehowon.github.io/nailian-web/
-- 출시 앱 (출시 이력): https://apps.apple.com/kr/app/nailian/id6744244726
-- 원본 BE 코드 (본인 담당): https://github.com/Snail-official/Nailian-BE
+- 출시 앱 (설치 가능 · 서버 종료로 현재 동작 안 함): https://apps.apple.com/kr/app/nailian/id6744244726
+- 원본 BE 코드 (백엔드 개발 참여): https://github.com/Snail-official/Nailian-BE
 - 원본 FE 코드 (구현 근거): https://github.com/Snail-official/Nailian-FE
 
-- 원본 앱은 7인 팀이 만든 온디바이스 AI 네일 추천 iOS 앱(React Native 0.76)입니다. 본인은 이 팀의 백엔드 리드였습니다.
-- 이 웹 체험판은 본인이 원본 FE 화면 코드를 읽고 색·글꼴·배치·문구를 옮겨 Vite + React(TypeScript)로 다시 만든 정적 웹 재현판입니다. React Native 코드를 웹으로 빌드한 것은 아닙니다.
+- 원본 앱은 7인 팀이 만든 온디바이스 AI 네일 추천 iOS 앱(React Native 0.76)입니다. 본인은 이 팀에서 백엔드 개발(2인 중 1명)을 맡았습니다.
+- 이 웹 체험판은 본인(성원호)이 Claude Code와 함께 원본 FE 화면 코드를 읽고 색·글꼴·배치·문구를 옮겨 Vite + React(TypeScript)로 다시 만든 정적 웹 재현판입니다. React Native 코드를 웹으로 빌드한 것은 아닙니다.
 
 ## 재현 범위
 
