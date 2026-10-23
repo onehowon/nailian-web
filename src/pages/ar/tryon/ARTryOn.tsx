@@ -3,11 +3,12 @@ import type { HandLandmarkerResult } from '@mediapipe/tasks-vision';
 import handImg from '../../../assets/images/hand.png';
 import { TabBarHeader } from '../../../shared/ui/TabBar';
 import { EmptyView, Spinner } from '../../../shared/ui/misc';
-import { goBack, replace } from '../../../shared/lib/router';
+import { toast } from '../../../shared/lib/toast';
+import { goBack, navigate } from '../../../shared/lib/router';
 import type { FingerType, SelectedNailSet } from '../../../shared/api/types';
 import { detectImage, detectVideo, loadHandLandmarker, setMode } from './handLandmarker';
 import { drawNails, FINGERS, handFacing, loadSprites, nailPlacements, type TipSprite } from './nailGeometry';
-import { loadTryOnSet } from './selection';
+import { fetchDefaultTryOnSet, loadTryOnSet } from './selection';
 
 type Source = 'sample' | 'photo' | 'camera';
 type Phase = 'choose' | 'loading' | 'live' | 'done' | 'error';
@@ -48,7 +49,13 @@ function guide(phase: Phase, s: Summary | null): string {
 }
 
 export default function ARTryOn() {
-  const [nailSet] = useState<SelectedNailSet | null>(() => loadTryOnSet());
+  const [nailSet, setNailSet] = useState<SelectedNailSet | null>(() => {
+    const s = loadTryOnSet();
+    return s && FINGERS.some(f => s[f]) ? s : null;
+  });
+  // 링크로 바로 들어와 고른 팁이 없으면 샘플 세트로 채워 바로 체험할 수 있게 한다
+  const [isDefault, setIsDefault] = useState(false);
+  const [defaultFailed, setDefaultFailed] = useState(false);
   const [phase, setPhase] = useState<Phase>('choose');
   const [source, setSource] = useState<Source | null>(null);
   const [summary, setSummary] = useState<Summary | null>(null);
@@ -71,6 +78,25 @@ export default function ARTryOn() {
     if (videoRef.current) videoRef.current.srcObject = null;
   };
 
+  useEffect(() => {
+    if (nailSet) return;
+    let alive = true;
+    fetchDefaultTryOnSet()
+      .then(set => {
+        if (!alive) return;
+        setNailSet(set);
+        setIsDefault(true);
+      })
+      .catch(() => {
+        if (!alive) return;
+        setDefaultFailed(true);
+        toast.showToast('기본 시안을 불러오지 못했어요', { position: 'bottom' });
+      });
+    return () => {
+      alive = false;
+    };
+  }, [nailSet]);
+
   useEffect(
     () => () => {
       run.current++;
@@ -79,16 +105,20 @@ export default function ARTryOn() {
     [],
   );
 
-  if (!nailSet || !FINGERS.some(f => nailSet[f])) {
+  if (!nailSet) {
     return (
       <div className="screen">
         <TabBarHeader title="내 손에 올려보기" onBack={goBack} />
         <div className="center-fill">
-          <EmptyView
-            message="AR 체험 화면에서 손가락별 네일팁을 먼저 골라주세요."
-            buttonText="네일 고르러 가기"
-            onButtonPress={() => replace('/ar')}
-          />
+          {defaultFailed ? (
+            <EmptyView
+              message="AR 체험 화면에서 손가락별 네일팁을 골라주세요."
+              buttonText="네일 고르러 가기"
+              onButtonPress={() => navigate('/ar')}
+            />
+          ) : (
+            <Spinner />
+          )}
         </div>
       </div>
     );
@@ -299,6 +329,14 @@ export default function ARTryOn() {
     <div className="screen tryon-screen">
       <TabBarHeader title="내 손에 올려보기" onBack={goBack} />
       <div className="scroll tryon-body">
+        {isDefault && (
+          <p className="tryon-default">
+            기본 시안으로 시작했어요 ·{' '}
+            <button className="tryon-link" onClick={() => navigate('/ar')}>
+              바꾸기
+            </button>
+          </p>
+        )}
         <div className="tryon-tips" aria-label="고른 네일팁">
           {FINGERS.map(f => (
             <div key={f} className="tryon-tip">

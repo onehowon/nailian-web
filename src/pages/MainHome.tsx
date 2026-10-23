@@ -26,6 +26,15 @@ export default function MainHome() {
         </div>
         <div className="home-content">
           <Banner />
+          {/* 웹 체험판 추가: 링크로 들어온 사람이 바로 웹 AR을 해 볼 수 있게 */}
+          <button className="home-tryon" onClick={() => navigate('/ar/try')}>
+            <Icon name="ar" size={24} color="var(--white)" />
+            <span className="home-tryon-text">
+              <strong>내 손에 올려보기 (웹 AR)</strong>
+              <span>샘플 손·사진·카메라로 바로 체험</span>
+            </span>
+            <Icon name="arrowRight" size={20} color="var(--white)" />
+          </button>
           <h2 className="home-reco">
             <span className="purple">{nickname}</span>님을 위한
             <br />

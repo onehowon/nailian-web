@@ -472,6 +472,34 @@ img {
 .dot.is-active {
   background: var(--gray600);
 }
+.home-tryon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 331px;
+  max-width: calc(100% - 32px);
+  margin: 16px auto 0;
+  padding: 12px 14px 12px 16px;
+  border-radius: 12px;
+  background: var(--purple500);
+  color: var(--white);
+  text-align: left;
+}
+.home-tryon-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.home-tryon-text strong {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 700;
+}
+.home-tryon-text span {
+  font-size: 12px;
+  line-height: 18px;
+  opacity: 0.85;
+}
 .home-reco {
   margin-top: 28px;
   padding: 0 22px;
@@ -1094,6 +1122,19 @@ img {
   flex-direction: column;
   gap: 12px;
   padding: 4px 20px 24px;
+}
+.tryon-default {
+  flex: none;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--gray600);
+  text-align: center;
+}
+.tryon-link {
+  color: var(--purple500);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .tryon-tips {
   display: flex;
