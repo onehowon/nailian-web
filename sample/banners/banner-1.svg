@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="662" height="316" viewBox="0 0 662 316">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#F28FDF"/>
+      <stop offset="1" stop-color="#CD19FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="662" height="316" rx="8" fill="url(#g)"/>
+  <path d="M40 300c-30-80 20-150 60-120s10 120-30 110M150 300c-40-120-20-260 30-250s40 200-20 250M260 300c-30-90 10-190 50-170s20 150-30 170" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="22" stroke-linecap="round"/>
+  <text x="44" y="112" font-family="Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">원하는 시안을 골라</text>
+  <text x="44" y="156" font-family="Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">내 손 위에 올려 보세요</text>
+  <text x="44" y="214" font-family="Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="20" font-weight="600" fill="#FFFFFF" fill-opacity="0.85">AR 체험 탭 · 샘플 배너</text>
+</svg>
