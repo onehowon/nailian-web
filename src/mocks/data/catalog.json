@@ -1,0 +1,6 @@
+{
+  "_comment": "샘플 네일팁 카탈로그. scripts/generate-sample-tips.mjs 가 이 목록대로 public/sample/nails/*.png 를 만든다. 원본 저장소의 nukki 에셋 4종(원컬러·프렌치·그라데이션·아트)을 색·모양만 바꾼 파생 이미지다.",
+  "categories": ["ONE_COLOR", "FRENCH", "GRADIENT", "ART"],
+  "colors": ["WHITE", "BLACK", "BEIGE", "PINK", "YELLOW", "GREEN", "BLUE", "SILVER"],
+  "shapes": ["SQUARE", "ROUND", "ALMOND", "BALLERINA", "STILETTO"]
+}
